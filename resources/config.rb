@@ -17,7 +17,7 @@ attribute :unicorn_pid, :kind_of => String, :required => false, :default => '/va
 attribute :cow_friendly, :kind_of => [TrueClass, FalseClass], :required => false, :default => false
 attribute :user, :kind_of => String, :required => false, :default => 'www-data'
 attribute :group, :kind_of => String, :required => false, :default => 'www-data'
-attribute :worker_processes, :kind_of => String, :required => false, :default => 1
+attribute :worker_processes, :kind_of => Integer, :required => false, :default => 1
 attribute :preload_app, :kind_of => [TrueClass, FalseClass], :required => false, :default => true
 attribute :unicorn_directory, :kind_of => String, :required => false, :default => '/etc/unicorn'
 attribute :max_memory_usage_mb, :kind_of => Integer, :required => false, :default => 100
