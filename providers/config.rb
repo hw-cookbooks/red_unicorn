@@ -29,7 +29,8 @@ action :create do
     mode 0644
     mapped_vars = %w(
       bundled current_path shared_path bundled_path unicorn_listen unicorn_listen_options
-      unicorn_timeout unicorn_pid cow_friendly user group worker_processes bundled_bin unicorn_preload_app
+      unicorn_timeout unicorn_pid cow_friendly user group worker_processes bundled_bin
+      unicorn_preload_app environment_variables
     ).map do |var|
       [var,new_resource.send(var)]
     end
