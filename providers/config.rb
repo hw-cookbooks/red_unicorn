@@ -1,7 +1,7 @@
 
 def load_current_resource
   if(new_resource.unicorn_exec.to_s.empty?)
-    new_resource.unicorn_exec ::File.join(@new_resource.bundled_bin, 'unicorn_rails')
+    new_resource.unicorn_exec ::File.join(new_resource.bundled_bin, 'unicorn_rails')
   end
 end
 
@@ -11,12 +11,18 @@ action :create do
     action :nothing
   end
 
-  directory ::File.dirname(@new_resource.unicorn_pid) do
+  directory ::File.dirname(new_resource.unicorn_pid) do
     action :create
     owner new_resource.user
     group new_resource.group
   end
-  
+
+  directory new_resource.unicorn_directory do
+    action :create
+    owner new_resource.user
+    group new_resource.group
+  end
+
   template ::File.join(new_resource.unicorn_directory, "#{new_resource.name}.rb") do
     source 'unicorn.app.erb'
     cookbook 'red_unicorn'
@@ -32,7 +38,7 @@ action :create do
     )
     notifies :restart, resources(:bluepill_service => new_resource.name), :delayed
   end
-  
+
   template ::File.join(node[:bluepill][:conf_dir], "#{new_resource.name}.pill") do
     source 'bluepill.erb'
     cookbook 'red_unicorn'
