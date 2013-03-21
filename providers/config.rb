@@ -16,14 +16,15 @@ action :create do
     owner new_resource.user
     group new_resource.group
   end
-  
+
   template ::File.join(new_resource.unicorn_directory, "#{new_resource.name}.rb") do
     source 'unicorn.app.erb'
     cookbook 'red_unicorn'
     mode 0644
     mapped_vars = %w(
       bundled current_path shared_path bundled_path unicorn_listen unicorn_listen_options
-      unicorn_timeout unicorn_pid cow_friendly user group worker_processes bundled_bin unicorn_preload_app
+      unicorn_timeout unicorn_pid cow_friendly user group worker_processes bundled_bin
+      unicorn_preload_app environment_variables
     ).map do |var|
       [var,new_resource.send(var)]
     end
@@ -32,7 +33,7 @@ action :create do
     )
     notifies :restart, resources(:bluepill_service => new_resource.name), :delayed
   end
-  
+
   template ::File.join(node[:bluepill][:conf_dir], "#{new_resource.name}.pill") do
     source 'bluepill.erb'
     cookbook 'red_unicorn'

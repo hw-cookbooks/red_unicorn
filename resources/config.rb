@@ -25,6 +25,7 @@ attribute :max_cpu_usage_percent, :kind_of => Integer, :required => false, :defa
 attribute :unicorn_exec, :kind_of => String, :required => false
 attribute :red_unicorn_exec, :kind_of => String, :required => false
 attribute :environment, :kind_of => String, :required => false, :default => 'production'
+attribute :environment_variables, :kind_of => Hash, :required => false, :default => {}
 attribute :start_grace_time, :kind_of => Fixnum, :required => false, :default => 30
 attribute :stop_grace_time, :kind_of => Fixnum, :required => false, :default => 30
 attribute :restart_grace_time, :kind_of => Fixnum, :required => false, :default => 60
