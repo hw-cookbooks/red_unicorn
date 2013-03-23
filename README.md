@@ -24,12 +24,15 @@ Cookbook Dependencies
 
 * Bluepill
 
-Info
-====
-
-Repository: https://github.com/heavywater/chef-red_unicorn
-
 Notes
 -----
 
 This version only provides bluepill based support. Other setup options on the way.
+
+Info
+====
+
+Repository: https://github.com/hw-cookbooks/red_unicorn
+IRC: #heavywater @ Freenode
+
+red_unicorn: https://github.com/chrisroberts/red_unicorn
