@@ -44,7 +44,7 @@ action :create do
     source 'bluepill.erb'
     cookbook 'red_unicorn'
     variables(
-      :red_unicorn_exec => "#{node[:red_unicorn][:exec]} -p #{new_resource.unicorn_pid} -x #{new_resource.unicorn_exec} -c #{::File.join(new_resource.unicorn_directory, "#{new_resource.name}.rb")} -e #{new_resource.environment}",
+      :red_unicorn_exec => "#{node[:red_unicorn][:exec]} -p #{new_resource.unicorn_pid} -x #{new_resource.unicorn_exec} -c #{::File.join(new_resource.unicorn_directory, "#{new_resource.name}.rb")} -e #{new_resource.environment} -t #{new_resource.restart_grace_time}",
       :app_name => new_resource.name,
       :process_name => "unicorn_#{new_resource.name}",
       :pid_file => new_resource.unicorn_pid,
