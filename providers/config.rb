@@ -27,16 +27,15 @@ action :create do
     source 'unicorn.app.erb'
     cookbook 'red_unicorn'
     mode 0644
+    values = {}
     mapped_vars = %w(
       bundled current_path shared_path bundled_path unicorn_listen unicorn_listen_options
       unicorn_timeout unicorn_pid cow_friendly user group worker_processes bundled_bin
       unicorn_preload_app environment_variables
-    ).map do |var|
-      [var,new_resource.send(var)]
+    ).each do |var|
+      values[var] = new_resource.send(var)
     end
-    variables(
-      Hash[*mapped_vars.flatten]
-    )
+    variables(values)
     notifies :restart, resources(:bluepill_service => new_resource.name), :delayed
   end
 
