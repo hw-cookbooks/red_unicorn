@@ -19,7 +19,7 @@ before_fork do |server, worker|
     ActiveRecord::Base.connection.disconnect!
 <% if @before_fork -%>
 
-<%= @before_fork %>
+<%= @before_fork.chomp %>
 <% end -%>
 end
 
@@ -30,7 +30,7 @@ after_fork do |server, worker|
     ActiveRecord::Base.establish_connection
 <% if @after_fork -%>
 
-<%= @after_fork %>
+<%= @after_fork.chomp %>
 <% end -%>
 end
 
