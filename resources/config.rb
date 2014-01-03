@@ -30,3 +30,5 @@ attribute :start_grace_time, :kind_of => Fixnum, :required => false, :default =>
 attribute :stop_grace_time, :kind_of => Fixnum, :required => false, :default => 30
 attribute :restart_grace_time, :kind_of => Fixnum, :required => false, :default => 60
 attribute :unicorn_preload_app, :kind_of => [TrueClass, FalseClass], :required => false, :default => true
+attribute :before_fork, :kind_of => String, :required => false
+attribute :after_fork, :kind_of => String, :required => false
