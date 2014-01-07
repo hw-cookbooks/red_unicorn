@@ -31,7 +31,7 @@ action :create do
     mapped_vars = %w(
       bundled current_path shared_path bundled_path unicorn_listen unicorn_listen_options
       unicorn_timeout unicorn_pid cow_friendly user group worker_processes bundled_bin
-      unicorn_preload_app environment_variables
+      unicorn_preload_app environment_variables before_fork after_fork
     ).each do |var|
       values[var] = new_resource.send(var)
     end

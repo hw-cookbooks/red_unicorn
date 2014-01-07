@@ -17,6 +17,10 @@ GC.respond_to?(:copy_on_write_friendly=) and
 before_fork do |server, worker|
   defined?(ActiveRecord::Base) and
     ActiveRecord::Base.connection.disconnect!
+<% if @before_fork -%>
+
+<%= @before_fork.chomp %>
+<% end -%>
 end
 
 after_fork do |server, worker|
@@ -24,6 +28,10 @@ after_fork do |server, worker|
 
   defined?(ActiveRecord::Base) and
     ActiveRecord::Base.establish_connection
+<% if @after_fork -%>
+
+<%= @after_fork.chomp %>
+<% end -%>
 end
 
 before_exec do |server|
