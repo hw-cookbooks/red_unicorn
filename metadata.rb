@@ -7,4 +7,3 @@ version '0.2.0'
 # NOTE: Currently forcibly configured via bluepill. Options for
 # upstart/runit to be added later
 depends 'bluepill'
-
